@@ -2,7 +2,6 @@
 // Use of this source code is governed by the BSD license
 // license that can be found in the LICENSE file.
 
-// stopwords package removes most frequent words from a text content
 package stopwords
 
 var italian = map[string]string{
@@ -52,7 +51,6 @@ var italian = map[string]string{
 	"berlusconi":  "",
 	"brava":       "",
 	"bravo":       "",
-	"c":           "",
 	"casa":        "",
 	"caso":        "",
 	"cento":       "",
@@ -96,7 +94,6 @@ var italian = map[string]string{
 	"cosi":        "",
 	"così":        "",
 	"cui":         "",
-	"d":           "",
 	"da":          "",
 	"dagli":       "",
 	"dai":         "",

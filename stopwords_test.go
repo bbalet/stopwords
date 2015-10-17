@@ -2,8 +2,6 @@
 // Use of this source code is governed by the BSD license
 // license that can be found in the LICENSE file.
 
-// stopwords package removes most frequent words from a text content
-
 package stopwords
 
 import (
@@ -79,6 +77,14 @@ func TestCzechStopWords(t *testing.T) {
 	}
 }
 
+func TestDanishStopWords(t *testing.T) {
+	source := "før abcdefghijk få lmnopqrstuvwxyz hvornår næste"
+	actual := CleanContent(source, "da", false)
+	if actual != expected {
+		t.Errorf("Test failed, got: '%s'", actual)
+	}
+}
+
 func TestDutchStopWords(t *testing.T) {
 	source := "aangezien abcdefghijk hierbeneden lmnopqrstuvwxyz ofschoon uitgezonderd"
 	actual := CleanContent(source, "nl", false)
@@ -143,6 +149,14 @@ func TestItalianStopWords(t *testing.T) {
 	}
 }
 
+func TestLatvianStopWords(t *testing.T) {
+	source := "būsiet abcdefghijk kļūsim lmnopqrstuvwxyz līdzko tiklīdz"
+	actual := CleanContent(source, "lv", false)
+	if actual != expected {
+		t.Errorf("Test failed, got: '%s'", actual)
+	}
+}
+
 func TestNorwegianStopWords(t *testing.T) {
 	source := "fÅ abcdefghijk tilstand lmnopqrstuvwxyz vÖre gjÛre"
 	actual := CleanContent(source, "no", false)
@@ -194,6 +208,14 @@ func TestRussianStopWords(t *testing.T) {
 func TestSpanishStopWords(t *testing.T) {
 	source := "aquél abcdefghijk cómo lmnopqrstuvwxyz día mucho"
 	actual := CleanContent(source, "es", false)
+	if actual != expected {
+		t.Errorf("Test failed, got: '%s'", actual)
+	}
+}
+
+func TestSlovakStopWords(t *testing.T) {
+	source := "budú abcdefghijk každý lmnopqrstuvwxyz môže tvojími"
+	actual := CleanContent(source, "sk", false)
 	if actual != expected {
 		t.Errorf("Test failed, got: '%s'", actual)
 	}

@@ -2,7 +2,6 @@
 // Use of this source code is governed by the BSD license
 // license that can be found in the LICENSE file.
 
-// stopwords package removes most frequent words from a text content
 package stopwords
 
 var turkish = map[string]string{
