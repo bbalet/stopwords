@@ -3,7 +3,7 @@ If instructed to do so, it will remove HTML tags and parse HTML entities.
 The objective is to prepare a text in view to be used by natural processing algos
 or text comparison algorithms such as SimHash.
 
-[![GoDoc](https:godoc.org/github.com/bbalet/stopwords?status.svg)](https:godoc.org/github.com/bbalet/stopwords)
+[![GoDoc](https://godoc.org/github.com/bbalet/stopwords?status.svg)](https://godoc.org/github.com/bbalet/stopwords)
 
 It uses a curated list of the most frequent words used in these languages:
  * arabic
@@ -28,7 +28,7 @@ It uses a curated list of the most frequent words used in these languages:
  * swedish
  * turkish
 
-If the function is used with an unsupported language, it doesn't fail, but doesn't filter the content.
+If the function is used with an unsupported language, it doesn't fail, but will apply english filter to the content.
 
 ## How to use this package
 
@@ -43,7 +43,7 @@ related content :
     cleanContent := stopwords.CleanContent(content, "en", true)
 
 Where *cleanContent* and *content* are strings containing an english text.
-And *en* is the ISO 639-1 code for English.
+And *en* is the ISO 639-1 code for English (it accepts a BCP 47 tag as well).
 https:en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 
 ## Credits

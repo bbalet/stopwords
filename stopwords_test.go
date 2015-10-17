@@ -10,27 +10,42 @@ import (
 
 var expected = " abcdefghijk lmnopqrstuvwxyz "
 
-func TestRemoveHTML(t *testing.T) {
-	source := "<a href='resource.htm'>&quot;Fran &amp; Freddie&#39;s Diner&quot;</a>&nbsp;<b>&lt;tasty@example.com&gt;</b>"
-	expected2 := ` "Fran & Freddie's Diner"   <tasty@example.com> `
-	actual := CleanContent(source, "zz", true)
-	if actual != expected2 {
-		t.Errorf("Test failed, got: '%s'", actual)
+func TestLangCodesHTML(t *testing.T) {
+	var langCodeTests = []struct {
+	  langCode        string
+	}{
+	  {"en-US"},
+	  {"en_US"},
+	  {"en_GB"},
+	  {"en-GB"},
+	  {"en"},
+		{"eng"},
+		{"zz"},
+	}
+
+	source := "afterwards"
+	expected2 := " "
+	for _, tt := range langCodeTests {
+		actual := CleanContent(source, tt.langCode, false)
+		if actual != expected2 {
+			t.Errorf("Test failed, got: '%s'", actual)
+		}
 	}
 }
 
-func TestLeaveHTML(t *testing.T) {
-	source := "<a href='/src/resource.htm'>abcdefghijk</a> <b>lmnopqrstuvwxyz</b>"
-	actual := CleanContent(source, "zz", false)
-	if actual != source {
+func TestRemoveHTML(t *testing.T) {
+	source := "<a href='resource.htm'>&quot;Fran &amp; Freddie&#39;s Diner&quot;</a>&nbsp;<b>&lt;tasty@example.com&gt;</b>"
+	expected2 := "fran freddie's diner tasty example com "
+	actual := CleanContent(source, "en", true)
+	if actual != expected2 {
 		t.Errorf("Test failed, got: '%s'", actual)
 	}
 }
 
 func TestRemoveSpaces(t *testing.T) {
 	source := "ab cd      ef  gh ij     kl         mn      op qr   st uv    wx yz"
-	expected2 := "ab cd ef gh ij kl mn op qr st uv wx yz"
-	actual := CleanContent(source, "zz", true)
+	expected2 := "ab cd ef gh ij kl mn op qr st uv wx yz "
+	actual := CleanContent(source, "en", true)
 	if actual != expected2 {
 		t.Errorf("Test failed, got: '%s'", actual)
 	}
@@ -41,14 +56,6 @@ func TestToLower(t *testing.T) {
 	expected2 := " problematic "
 	actual := CleanContent(source, "en", true)
 	if actual != expected2 {
-		t.Errorf("Test failed, got: '%s'", actual)
-	}
-}
-
-func TestUnknownLangStopWords(t *testing.T) {
-	source := "along abcdefghijk another lmnopqrstuvwxyz yet"
-	actual := CleanContent(source, "zz", false)
-	if actual != source {
 		t.Errorf("Test failed, got: '%s'", actual)
 	}
 }

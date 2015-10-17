@@ -5,31 +5,15 @@
 // stopwords package removes most frequent words from a text content.
 // It can be used to improve the accuracy of SimHash algo for example.
 // It uses a list of most frequent words used in various languages :
-// * arabic
-// * bulgarian
-// * czech
-// * danish
-// * english
-// * finnish
-// * french
-// * german
-// * hungarian
-// * italian
-// * latvian
-// * norwegian
-// * persian
-// * polish
-// * portuguese
-// * romanian
-// * russian
-// * slovak
-// * spanish
-// * swedish
-// * turkish
+//
+// arabic, bulgarian, czech, danish, english, finnish, french, german,
+// hungarian, italian, latvian, norwegian, persian, polish, portuguese,
+// romanian, russian, slovak, spanish, swedish, turkish
 package stopwords
 
 import (
 	"golang.org/x/text/unicode/norm"
+	"golang.org/x/text/language"
 	"html"
 	"regexp"
 	"strings"
@@ -42,15 +26,20 @@ var (
 )
 
 // CleanContent removes useless spaces and stop words from content.
-// ISO 639-1 language code (if not supported, nothing is removed form source).
-// If removeHTML is TRUE, remove HTML tags from content and unescape entities.
-func CleanContent(content string, langCode string, removeHTML bool) string {
+// BCP 47 or ISO 639-1 language code (if unknown, we'll apply english filters).
+// If cleanHTML is TRUE, remove HTML tags from content and unescape HTML entities.
+func CleanContent(content string, langCode string, cleanHTML bool) string {
 
 	//Remove HTML tags
-	if removeHTML {
+	if cleanHTML {
 		content = remTags.ReplaceAllString(content, " ")
 		content = html.UnescapeString(content)
 	}
+
+	//Parse language
+	tag := language.Make(langCode)
+	base, _ := tag.Base()
+	langCode = base.String()
 
 	//Remove stop words by using a list of most frequent words
 	switch langCode {
