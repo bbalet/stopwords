@@ -10,7 +10,8 @@ import (
 	"testing"
 )
 
-var sample = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+var (
+	sample = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
 <TITLE>Sample text for Library of Congress control number 2006051179</TITLE>
@@ -35,9 +36,17 @@ Rome -- History -- Fiction.<br>
 
 </BODY>
 </HTML>`
+	sampleB = []byte(sample)
+)
 
 func BenchmarkCleanContent(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		CleanContent(sample, "en", true)
+		CleanString(sample, "en", true)
+	}
+}
+
+func BenchmarkClean(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Clean(sampleB, "en", true)
 	}
 }
