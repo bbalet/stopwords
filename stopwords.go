@@ -12,11 +12,12 @@
 package stopwords
 
 import (
-	"golang.org/x/text/unicode/norm"
-	"golang.org/x/text/language"
+	"bytes"
 	"html"
 	"regexp"
-	"strings"
+
+	"golang.org/x/text/language"
+	"golang.org/x/text/unicode/norm"
 )
 
 var (
@@ -25,15 +26,21 @@ var (
 	unicodeWords = regexp.MustCompile(`[\pL-_']+`)
 )
 
-// CleanContent removes useless spaces and stop words from content.
+// CleanString removes useless spaces and stop words from string content.
 // BCP 47 or ISO 639-1 language code (if unknown, we'll apply english filters).
 // If cleanHTML is TRUE, remove HTML tags from content and unescape HTML entities.
-func CleanContent(content string, langCode string, cleanHTML bool) string {
+func CleanString(content string, langCode string, cleanHTML bool) string {
+	return string(Clean([]byte(content), langCode, cleanHTML))
+}
 
+// Clean removes useless spaces and stop words from a byte slice.
+// BCP 47 or ISO 639-1 language code (if unknown, we'll apply english filters).
+// If cleanHTML is TRUE, remove HTML tags from content and unescape HTML entities.
+func Clean(content []byte, langCode string, cleanHTML bool) []byte {
 	//Remove HTML tags
 	if cleanHTML {
-		content = remTags.ReplaceAllString(content, " ")
-		content = html.UnescapeString(content)
+		content = remTags.ReplaceAll(content, []byte(" "))
+		content = []byte(html.UnescapeString(string(content)))
 	}
 
 	//Parse language
@@ -92,22 +99,23 @@ func CleanContent(content string, langCode string, cleanHTML bool) string {
 	}
 
 	//Remove duplicated space characters
-	content = oneSpace.ReplaceAllString(content, " ")
+	content = oneSpace.ReplaceAll(content, []byte(" "))
 
 	return content
 }
 
-// removeStopWords Iterates through a list of words and removes stop words
-func removeStopWords(content string, dict map[string]string) string {
-	var result string
-	content = norm.NFC.String(content)
-	content = strings.ToLower(content)
-	words := unicodeWords.FindAllString(content, -1)
+// removeStopWords iterates through a list of words and removes stop words.
+func removeStopWords(content []byte, dict map[string]string) []byte {
+	var result []byte
+	content = norm.NFC.Bytes(content)
+	content = bytes.ToLower(content)
+	words := unicodeWords.FindAll(content, -1)
 	for _, w := range words {
-		if _, ok := dict[w]; ok {
-			result += " "
+		if _, ok := dict[string(w)]; ok {
+			result = append(result, ' ')
 		} else {
-			result += w + " "
+			result = append(result, []byte(w)...)
+			result = append(result, ' ')
 		}
 	}
 	return result
