@@ -50,3 +50,9 @@ func BenchmarkClean(b *testing.B) {
 		Clean(sampleB, "en", true)
 	}
 }
+
+func BenchmarkSimhash(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Clean(sampleB, "en", true)
+	}
+}
