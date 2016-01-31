@@ -34,16 +34,31 @@ If the function is used with an unsupported language, it doesn't fail, but will 
 
 You can find an example here https:github.com/bbalet/gorelated where **stopwords**
 package is used in conjunction with SimHash algorithm in order to find a list of
-related content :
+related content for a static website generator:
 
     import (
 	      "github.com/bbalet/stopwords"
     )
 
-    cleanContent := stopwords.CleanContent(content, "en", true)
+    //Example with 2 strings containing P html tags
+    //"la", "un", etc. are (stop) words without lexical value in French
+    string1 := []byte("<p>la fin d'un bel après-midi d'été</p>")
+    string2 := []byte("<p>cet été, nous avons eu un bel après-midi</p>")
 
-Where *cleanContent* and *content* are strings containing an english text.
-And *en* is the ISO 639-1 code for English (it accepts a BCP 47 tag as well).
+    //Return a string where HTML tags and French stop words has been removed
+    cleanContent := stopwords.CleanContent(string1, "fr", true)
+
+    //Get two (Sim) hash representing the content of each string
+    hash1 := stopwords.Simhash(string1, "fr", true)
+    hash2 := stopwords.Simhash(string2, "fr", true)
+
+  	//Hamming distance between the two strings (diffference between contents)
+  	distance := stopwords.CompareSimhash(hash1, hash2)
+
+    //Clean the content of string1 and string2, compute the Levenshtein Distance
+    stopwords.LevenshteinDistance(string1, string2, "fr", true)
+
+Where *fr* is the ISO 639-1 code for French (it accepts a BCP 47 tag as well).
 https:en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 
 ## Credits

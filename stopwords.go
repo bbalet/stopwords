@@ -9,6 +9,8 @@
 // arabic, bulgarian, czech, danish, english, finnish, french, german,
 // hungarian, italian, latvian, norwegian, persian, polish, portuguese,
 // romanian, russian, slovak, spanish, swedish, turkish
+//
+// It contains various algorithms of text comparisons (Simhash, Levenshtein)
 package stopwords
 
 import (

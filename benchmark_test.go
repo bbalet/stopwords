@@ -53,6 +53,12 @@ func BenchmarkClean(b *testing.B) {
 
 func BenchmarkSimhash(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Clean(sampleB, "en", true)
+		Simhash(sampleB, "en", true)
+	}
+}
+
+func BenchmarkLevenshtein(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		LevenshteinDistance(sampleB, sampleB, "en", true)
 	}
 }

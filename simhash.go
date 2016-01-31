@@ -16,7 +16,7 @@ import (
 )
 
 // Each item of the array is the hash of a word of the content.
-type Vector [64]int
+type vector [64]int
 
 // Internal struct: 64-bit hash and weight of a word
 type feature struct {
@@ -96,7 +96,7 @@ func Simhash(content []byte, langCode string, cleanHTML bool) uint64 {
 
 // removeStopWords iterates through a list of words and removes stop words.
 func removeStopWordsAndHash(content []byte, dict map[string]string) uint64 {
-	var v Vector
+	var v vector
 	var i int
 
 	content = norm.NFC.Bytes(content)
@@ -105,7 +105,7 @@ func removeStopWordsAndHash(content []byte, dict map[string]string) uint64 {
 
 	for _, w := range words {
 		if _, ok := dict[string(w)]; !ok {
-			feature := NewFeature(w)
+			feature := newFeature(w)
 			sum := feature.Sum
 			weight := feature.Weight
 			for i := uint8(0); i < 64; i++ {
@@ -134,7 +134,7 @@ func removeStopWordsAndHash(content []byte, dict map[string]string) uint64 {
 }
 
 // Returns a new feature representing the given byte slice, using a weight of 1
-func NewFeature(f []byte) feature {
+func newFeature(f []byte) feature {
 	h := fnv.New64()
 	h.Write(f)
 	return feature{h.Sum64(), 1}
