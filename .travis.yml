@@ -1,0 +1,13 @@
+language: go
+
+go:
+  - 1.3
+  - tip
+
+before_install:
+  - go get golang.org/x/text/language
+  - go get golang.org/x/text/unicode/norm
+  - pip install --user codecov
+
+after_success:
+  - codecov
