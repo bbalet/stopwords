@@ -8,8 +8,8 @@ package stopwords
 
 import (
 	"bytes"
-	"html"
 	"hash/fnv"
+	"html"
 
 	"golang.org/x/text/language"
 	"golang.org/x/text/unicode/norm"
@@ -124,7 +124,7 @@ func removeStopWordsAndHash(content []byte, dict map[string]string) uint64 {
 	// The fingerprint f of a given 64-dimension vector v is defined as follows:
 	//   f[j] = 1 if v[j] >= 0
 	//   f[j] = 0 if v[j] < 0
-  var fingerprint uint64
+	var fingerprint uint64
 	for j := uint8(0); j < 64; j++ {
 		if v[j] >= 0 {
 			fingerprint |= (1 << j)

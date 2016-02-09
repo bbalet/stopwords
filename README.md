@@ -5,6 +5,10 @@ or text comparison algorithms such as SimHash.
 
 [![GoDoc](https://godoc.org/github.com/bbalet/stopwords?status.svg)](https://godoc.org/github.com/bbalet/stopwords)
 
+[![Build Status](https://api.travis-ci.org/bbalet/stopwords.png)](https://travis-ci.org/bbalet/stopwords)
+
+[![codecov.io](https://codecov.io/github/bbalet/stopwords/coverage.svg?branch=master)](https://codecov.io/github/bbalet/stopwords?branch=master)
+
 It uses a curated list of the most frequent words used in these languages:
  * arabic
  * bulgarian
@@ -16,6 +20,7 @@ It uses a curated list of the most frequent words used in these languages:
  * german
  * hungarian
  * italian
+ * japanese
  * latvian
  * norwegian
  * persian

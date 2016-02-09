@@ -254,3 +254,42 @@ func TestTurkishStopWords(t *testing.T) {
 		t.Errorf("Test failed, got: '%s'", actual)
 	}
 }
+
+func TestUnicodeWordBreakStopWords(t *testing.T) {
+	//If the text has been edited with a modern text processor, the words are broken using ZWSP unicode character, e.g.
+	//住宅​地域​に​おける​本機​の​使用​は​有害な​電波妨害​を​​引き起こす​こと​が​あり、​その​場合​ユーザー​は​自己負担​で​電波妨害​の​問題​を​解決​しなければなりません​。
+	/* This sentence should be broken into the following words (see http://www.atilika.org/):
+	   (N) 住宅地域		-
+	   (P) に			- stop word
+	   (V) おける		- stop word
+	   (N) 本機
+	   (P) の			- stop word
+	   (N) 使用
+	   (P) は			- stop word
+	   (AN) 有害な
+	   (N) 電波妨害
+	   (P) を			- stop word
+	   (V) 引き起こす
+	   (N) こと			- stop word
+	   (P) が			- stop word
+	   (V) あり、
+	   (D) その			- stop word
+	   (N) 場合
+	   (N) ユーザー
+	   (P) は			- stop word
+	   (N) 自己負担
+	   (P) で			- stop word
+	   (N) 電波妨害
+	   (P) の			- stop word
+	   (N) 問題
+	   (P) を			- stop word
+	   (N) 解決
+	   (V) しなければなりません。
+	*/
+	source := "住宅​地域​に​おける​本機​の​使用​は​有害な​電波妨害​を​​引き起こす​こと​が​あり、​その​場合​ユーザー​は​自己負担​で​電波妨害​の​問題​を​解決​しなければなりません​。"
+	expected2 := "住宅 地域 おける 本機 使用 有害な 電波妨害 引き起こす 場合 ユーザー 自己負担 電波妨害 問題 解決 しなければなりません "
+	actual := CleanString(source, "ja", false)
+	if actual != expected2 {
+		t.Errorf("Test failed, got: '%s'", actual)
+	}
+}

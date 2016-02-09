@@ -11,17 +11,17 @@ package stopwords
 // BCP 47 or ISO 639-1 language code (if unknown, we'll apply english filters).
 // If cleanHTML is TRUE, remove HTML tags from content and unescape HTML entities.
 func LevenshteinDistance(contentA []byte, contentB []byte, langCode string, cleanHTML bool) int {
-  stringA := Clean(contentA, langCode, cleanHTML)
-  stringB := Clean(contentB, langCode, cleanHTML)
-  distance := levenshteinAlgo(&stringA, &stringB)
-  return distance
+	stringA := Clean(contentA, langCode, cleanHTML)
+	stringB := Clean(contentB, langCode, cleanHTML)
+	distance := levenshteinAlgo(&stringA, &stringB)
+	return distance
 }
 
 // levenshteinAlgo compute the LevenshteinDistance between 2 strings
 func levenshteinAlgo(a, b *[]byte) int {
 	la := len(*a)
 	lb := len(*b)
-	d  := make([]int, la + 1)
+	d := make([]int, la+1)
 	var lastdiag, olddiag, temp int
 
 	for i := 1; i <= la; i++ {
@@ -33,10 +33,10 @@ func levenshteinAlgo(a, b *[]byte) int {
 		for j := 1; j <= la; j++ {
 			olddiag = d[j]
 			min := d[j] + 1
-			if (d[j - 1] + 1) < min {
-				min = d[j - 1] + 1
+			if (d[j-1] + 1) < min {
+				min = d[j-1] + 1
 			}
-			if ( (*a)[j - 1] == (*b)[i - 1] ) {
+			if (*a)[j-1] == (*b)[i-1] {
 				temp = 0
 			} else {
 				temp = 1

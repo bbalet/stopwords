@@ -7,8 +7,8 @@
 // It uses a list of most frequent words used in various languages :
 //
 // arabic, bulgarian, czech, danish, english, finnish, french, german,
-// hungarian, italian, latvian, norwegian, persian, polish, portuguese,
-// romanian, russian, slovak, spanish, swedish, turkish
+// hungarian, italian, japanese, latvian, norwegian, persian, polish,
+//  portuguese, romanian, russian, slovak, spanish, swedish, turkish
 //
 // It contains various algorithms of text comparisons (Simhash, Levenshtein)
 package stopwords
@@ -78,6 +78,8 @@ func Clean(content []byte, langCode string, cleanHTML bool) []byte {
 		content = removeStopWords(content, hungarian)
 	case "it":
 		content = removeStopWords(content, italian)
+	case "ja":
+		content = removeStopWords(content, japanese)
 	case "lv":
 		content = removeStopWords(content, latvian)
 	case "nl":
