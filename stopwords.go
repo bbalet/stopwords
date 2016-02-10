@@ -25,7 +25,7 @@ import (
 var (
 	remTags      = regexp.MustCompile(`<[^>]*>`)
 	oneSpace     = regexp.MustCompile(`\s{2,}`)
-	unicodeWords = regexp.MustCompile(`[\pL-_']+`)
+	unicodeWords = regexp.MustCompile(`[\pL\p{Mc}\p{Mn}-_']+`)
 )
 
 // CleanString removes useless spaces and stop words from string content.
@@ -98,6 +98,8 @@ func Clean(content []byte, langCode string, cleanHTML bool) []byte {
 		content = removeStopWords(content, slovak)
 	case "sv":
 		content = removeStopWords(content, swedish)
+	case "th":
+		content = removeStopWords(content, thai)
 	case "tr":
 		content = removeStopWords(content, turkish)
 	}

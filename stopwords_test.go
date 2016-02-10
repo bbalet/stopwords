@@ -293,3 +293,14 @@ func TestUnicodeWordBreakStopWords(t *testing.T) {
 		t.Errorf("Test failed, got: '%s'", actual)
 	}
 }
+
+func TestThaiStopWords(t *testing.T) {
+	//As for TestUnicodeWordBreakStopWords, we assume that the words are properly
+	//tokenized using ZWSP unicode character or space as a word boundary.
+	source := "การ​ที่​ได้​ต้อง​แสดง​ว่า​งาน​ดี"
+	expected2 := " แสดง งาน ดี "
+	actual := CleanString(source, "th", false)
+	if actual != expected2 {
+		t.Errorf("Test failed, got: '%s'", actual)
+	}
+}

@@ -1,4 +1,5 @@
 // Copyright 2016 Benjamin BALET. All rights reserved.
+// This list was built from Apache Lucene project (Apache license)
 // Use of this source code is governed by the BSD license
 // license that can be found in the LICENSE file.
 

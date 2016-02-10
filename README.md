@@ -31,6 +31,7 @@ It uses a curated list of the most frequent words used in these languages:
  * slovak
  * spanish
  * swedish
+ * thai
  * turkish
 
 If the function is used with an unsupported language, it doesn't fail, but will apply english filter to the content.
