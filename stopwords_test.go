@@ -255,6 +255,14 @@ func TestTurkishStopWords(t *testing.T) {
 	}
 }
 
+func TestIndonesianStopWords(t *testing.T) {
+	source := "dia  abcdefghijk lmnopqrstuvwxyz adalah seorang"
+	actual := CleanString(source, "id", false)
+	if actual != expected {
+		t.Errorf("Test failed, got: '%s'", actual)
+	}
+}
+
 func TestUnicodeWordBreakStopWords(t *testing.T) {
 	//If the text has been edited with a modern text processor, the words are broken using ZWSP unicode character, e.g.
 	//住宅​地域​に​おける​本機​の​使用​は​有害な​電波妨害​を​​引き起こす​こと​が​あり、​その​場合​ユーザー​は​自己負担​で​電波妨害​の​問題​を​解決​しなければなりません​。
