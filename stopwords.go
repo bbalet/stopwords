@@ -76,6 +76,8 @@ func Clean(content []byte, langCode string, cleanHTML bool) []byte {
 		content = removeStopWords(content, finnish)
 	case "hu":
 		content = removeStopWords(content, hungarian)
+	case "id":
+		content = removeStopWords(content, indonesian)
 	case "it":
 		content = removeStopWords(content, italian)
 	case "ja":
