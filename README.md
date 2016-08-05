@@ -65,12 +65,18 @@ related content for a static website generator:
     stopwords.LevenshteinDistance(string1, string2, "fr", true)
 
 Where *fr* is the ISO 639-1 code for French (it accepts a BCP 47 tag as well).
-https:en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+
+## Limitations
+
+Please note that this library doesn't break words. If you want to break words prior using stopwords, you need to use another library that provides a binding to ICU library.
+
+These curated lists contain the most used words in various topics, they were not built with a corpus limited to any given specialized topic.
 
 ## Credits
 
 Most of the lists were built by IR Multilingual Resources at UniNE
-http:members.unine.ch/jacques.savoy/clef/index.html
+http://members.unine.ch/jacques.savoy/clef/index.html
 
 ## License
 
