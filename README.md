@@ -52,7 +52,7 @@ related content for a static website generator:
     string2 := []byte("<p>cet été, nous avons eu un bel après-midi</p>")
 
     //Return a string where HTML tags and French stop words has been removed
-    cleanContent := stopwords.CleanContent(string1, "fr", true)
+    cleanContent := stopwords.CleanString(string1, "fr", true)
 
     //Get two (Sim) hash representing the content of each string
     hash1 := stopwords.Simhash(string1, "fr", true)

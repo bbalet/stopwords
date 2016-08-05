@@ -39,7 +39,7 @@ Rome -- History -- Fiction.<br>
 	sampleB = []byte(sample)
 )
 
-func BenchmarkCleanContent(b *testing.B) {
+func BenchmarkCleanString(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		CleanString(sample, "en", true)
 	}
