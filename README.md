@@ -4,10 +4,10 @@ The objective is to prepare a text in view to be used by natural processing algo
 or text comparison algorithms such as SimHash.
 
 [![GoDoc](https://godoc.org/github.com/bbalet/stopwords?status.svg)](https://godoc.org/github.com/bbalet/stopwords)
-
 [![Build Status](https://api.travis-ci.org/bbalet/stopwords.png)](https://travis-ci.org/bbalet/stopwords)
-
 [![codecov.io](https://codecov.io/github/bbalet/stopwords/coverage.svg?branch=master)](https://codecov.io/github/bbalet/stopwords?branch=master)
+
+[![Join the chat at https://gitter.im/bbalet/stopwords](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bbalet/stopwords?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 It uses a curated list of the most frequent words used in these languages:
  * arabic
