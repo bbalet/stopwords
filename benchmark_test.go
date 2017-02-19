@@ -2,8 +2,7 @@
 // Use of this source code is governed by the BSD license
 // license that can be found in the LICENSE file.
 
-// stopwords package removes most frequent words from a text content
-
+// Package stopwords removes most frequent words from a text content
 package stopwords
 
 import (

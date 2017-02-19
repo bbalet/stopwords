@@ -2,7 +2,7 @@
 // Use of this source code is governed by the BSD license
 // license that can be found in the LICENSE file.
 
-// implements Charikar's simhash algorithm to generate a 64-bit
+// Package stopwords implements Charikar's simhash algorithm to generate a 64-bit
 // fingerprint of a given document.
 package stopwords
 
@@ -69,6 +69,10 @@ func Simhash(content []byte, langCode string, cleanHTML bool) uint64 {
 		hash = removeStopWordsAndHash(content, hungarian)
 	case "it":
 		hash = removeStopWordsAndHash(content, italian)
+	case "ja":
+		hash = removeStopWordsAndHash(content, japanese)
+	case "km":
+		hash = removeStopWordsAndHash(content, khmer)
 	case "lv":
 		hash = removeStopWordsAndHash(content, latvian)
 	case "nl":
@@ -87,6 +91,8 @@ func Simhash(content []byte, langCode string, cleanHTML bool) uint64 {
 		hash = removeStopWordsAndHash(content, slovak)
 	case "sv":
 		hash = removeStopWordsAndHash(content, swedish)
+	case "th":
+		hash = removeStopWordsAndHash(content, thai)
 	case "tr":
 		hash = removeStopWordsAndHash(content, turkish)
 	}
@@ -105,9 +111,9 @@ func removeStopWordsAndHash(content []byte, dict map[string]string) uint64 {
 
 	for _, w := range words {
 		if _, ok := dict[string(w)]; !ok {
-			feature := newFeature(w)
-			sum := feature.Sum
-			weight := feature.Weight
+			aFeature := newFeature(w)
+			sum := aFeature.Sum
+			weight := aFeature.Weight
 			for i := uint8(0); i < 64; i++ {
 				bit := ((sum >> i) & 1)
 				if bit == 1 {
@@ -140,7 +146,7 @@ func newFeature(f []byte) feature {
 	return feature{h.Sum64(), 1}
 }
 
-// Compare calculates the Hamming distance between two 64-bit integers
+// CompareSimhash calculates the Hamming distance between two 64-bit integers
 // using the Kernighan method.
 func CompareSimhash(a uint64, b uint64) uint8 {
 	v := a ^ b

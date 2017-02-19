@@ -8,9 +8,9 @@
 //
 // arabic, bulgarian, czech, danish, english, finnish, french, german,
 // hungarian, italian, japanese, latvian, norwegian, persian, polish,
-//  portuguese, romanian, russian, slovak, spanish, swedish, turkish
-//
-// It contains various algorithms of text comparisons (Simhash, Levenshtein)
+// portuguese, romanian, russian, slovak, spanish, swedish, turkish
+
+// Package stopwords contains various algorithms of text comparison (Simhash, Levenshtein)
 package stopwords
 
 import (
@@ -82,6 +82,8 @@ func Clean(content []byte, langCode string, cleanHTML bool) []byte {
 		content = removeStopWords(content, italian)
 	case "ja":
 		content = removeStopWords(content, japanese)
+	case "km":
+		content = removeStopWords(content, khmer)
 	case "lv":
 		content = removeStopWords(content, latvian)
 	case "nl":
@@ -119,6 +121,7 @@ func removeStopWords(content []byte, dict map[string]string) []byte {
 	content = bytes.ToLower(content)
 	words := unicodeWords.FindAll(content, -1)
 	for _, w := range words {
+		//log.Println(w)
 		if _, ok := dict[string(w)]; ok {
 			result = append(result, ' ')
 		} else {

@@ -312,3 +312,14 @@ func TestThaiStopWords(t *testing.T) {
 		t.Errorf("Test failed, got: '%s'", actual)
 	}
 }
+
+func TestKhmerStopWords(t *testing.T) {
+	//As for TestUnicodeWordBreakStopWords, we assume that the words are properly
+	//tokenized using ZWSP unicode character or space as a word boundary.
+	source := "ខ្ញុំ​ទៅ​ផ្សារ​។ ទៅ​អោយ​បាន​សុខ​។"
+	expected2 := " អោយ សុខ "
+	actual := CleanString(source, "km", false)
+	if actual != expected2 {
+		t.Errorf("Test failed, got: '%s'", actual)
+	}
+}

@@ -21,6 +21,7 @@ It uses a curated list of the most frequent words used in these languages:
  * hungarian
  * italian
  * japanese
+ * khmer
  * latvian
  * norwegian
  * persian

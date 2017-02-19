@@ -2,7 +2,7 @@
 // Use of this source code is governed by the BSD license
 // license that can be found in the LICENSE file.
 
-// implements the Levenshtein Distance algorithm to evaluate the diference
+// Package stopwords implements the Levenshtein Distance algorithm to evaluate the diference
 // between 2 strings
 package stopwords
 
