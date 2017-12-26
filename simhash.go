@@ -107,7 +107,7 @@ func removeStopWordsAndHash(content []byte, dict map[string]string) uint64 {
 
 	content = norm.NFC.Bytes(content)
 	content = bytes.ToLower(content)
-	words := unicodeWords.FindAll(content, -1)
+	words := wordSegmenter.FindAll(content, -1)
 
 	for _, w := range words {
 		if _, ok := dict[string(w)]; !ok {

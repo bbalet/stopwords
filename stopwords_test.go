@@ -323,3 +323,27 @@ func TestKhmerStopWords(t *testing.T) {
 		t.Errorf("Test failed, got: '%s'", actual)
 	}
 }
+
+// TestDontStripDigits tests if we can include Number, Decimal Digit'
+// Unicode Category as words
+func TestDontStripDigits(t *testing.T) {
+	source := "a 6-years-old boy was found the hand in the cookie jar"
+	expected2 := " 6-years-old boy hand cookie jar "
+	DontStripDigits()
+	actual := CleanString(source, "en", false)
+	if actual != expected2 {
+		t.Errorf("Test failed, got: '%s'", actual)
+	}
+}
+
+// TestOverwriteWordSegmenter tests if we can overwrite the word segmenter
+// with a custom regular expression
+func TestOverwriteWordSegmenter(t *testing.T) {
+	source := "AABC4EEF7DDYTH9"
+	expected2 := "aabc eef ddyth "
+	OverwriteWordSegmenter(`[\pL]+`)
+	actual := CleanString(source, "en", false)
+	if actual != expected2 {
+		t.Errorf("Test failed, got: '%s'", actual)
+	}
+}

@@ -25,8 +25,20 @@ import (
 var (
 	remTags      = regexp.MustCompile(`<[^>]*>`)
 	oneSpace     = regexp.MustCompile(`\s{2,}`)
-	unicodeWords = regexp.MustCompile(`[\pL\p{Mc}\p{Mn}-_']+`)
+	wordSegmenter = regexp.MustCompile(`[\pL\p{Mc}\p{Mn}-_']+`)
 )
+
+// DontStripDigits changes the behaviour of the default word segmenter
+// by including 'Number, Decimal Digit' Unicode Category as words
+func DontStripDigits() {
+	wordSegmenter = regexp.MustCompile(`[\pL\p{Mc}\p{Mn}\p{Nd}-_']+`)
+}
+
+// OverwriteWordSegmenter allows you to overwrite the default word segmenter
+// with your own regular expression
+func OverwriteWordSegmenter(expression string) {
+	wordSegmenter = regexp.MustCompile(expression)
+}
 
 // CleanString removes useless spaces and stop words from string content.
 // BCP 47 or ISO 639-1 language code (if unknown, we'll apply english filters).
@@ -119,7 +131,7 @@ func removeStopWords(content []byte, dict map[string]string) []byte {
 	var result []byte
 	content = norm.NFC.Bytes(content)
 	content = bytes.ToLower(content)
-	words := unicodeWords.FindAll(content, -1)
+	words := wordSegmenter.FindAll(content, -1)
 	for _, w := range words {
 		//log.Println(w)
 		if _, ok := dict[string(w)]; ok {
