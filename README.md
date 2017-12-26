@@ -70,6 +70,17 @@ related content for a static website generator:
 Where *fr* is the ISO 639-1 code for French (it accepts a BCP 47 tag as well).
 https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 
+## How to load a custom list of stop words from a file/string?
+
+This package comes with a predefined list of stopwords.
+However, two functions allow you to use your own list of words:
+
+    stopwords.LoadStopWordsFromFile(filePath, langCode, separator)
+    stopwords.LoadStopWordsFromString(wordsList, langCode, separator)
+
+They will overwrite the predefined words for a given language.
+You can find an example with the file `stopwords.txt`
+
 ## How to overwrite the word segmenter?
 
 If you don't want to strip the Unicode Characters of the 'Number, Decimal Digit'
