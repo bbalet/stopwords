@@ -133,7 +133,6 @@ func removeStopWords(content []byte, dict map[string]string) []byte {
 	content = bytes.ToLower(content)
 	words := wordSegmenter.FindAll(content, -1)
 	for _, w := range words {
-		//log.Println(w)
 		if _, ok := dict[string(w)]; ok {
 			result = append(result, ' ')
 		} else {
