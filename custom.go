@@ -19,7 +19,7 @@ import (
 func LoadStopWordsFromFile(filePath string, langCode string, sep string) {
 	b, err := ioutil.ReadFile(filePath)
 	if err != nil {
-			panic(err)
+		panic(err)
 	}
 	LoadStopWordsFromString(string(b), langCode, sep)
 }
@@ -36,142 +36,65 @@ func LoadStopWordsFromString(wordsList string, langCode string, sep string) {
 	langCode = base.String()
 
 	words := strings.Split(strings.ToLower(wordsList), sep)
+	stopWordList := make(map[string]string)
+	for _, word := range words {
+		stopWordList[word] = ""
+	}
 
 	switch langCode {
 	case "ar":
-		arabic = make(map[string]string)
-		for _, word := range words {
-				arabic[word] = ""
-		}
+		arabic = stopWordList
 	case "bg":
-		bulgarian = make(map[string]string)
-		for _, word := range words {
-				bulgarian[word] = ""
-		}
+		bulgarian = stopWordList
 	case "cs":
-		czech = make(map[string]string)
-		for _, word := range words {
-				czech[word] = ""
-		}
+		czech = stopWordList
 	case "da":
-		danish = make(map[string]string)
-		for _, word := range words {
-				danish[word] = ""
-		}
+		danish = stopWordList
 	case "de":
-		german = make(map[string]string)
-		for _, word := range words {
-				german[word] = ""
-		}
+		german = stopWordList
 	case "el":
-		greek = make(map[string]string)
-		for _, word := range words {
-				greek[word] = ""
-		}
+		greek = stopWordList
 	case "en":
-		english = make(map[string]string)
-		for _, word := range words {
-				english[word] = ""
-		}
+		english = stopWordList
 	case "es":
-		spanish = make(map[string]string)
-		for _, word := range words {
-				spanish[word] = ""
-		}
+		spanish = stopWordList
 	case "fa":
-		persian = make(map[string]string)
-		for _, word := range words {
-				persian[word] = ""
-		}
+		persian = stopWordList
 	case "fr":
-		french = make(map[string]string)
-		for _, word := range words {
-				french[word] = ""
-		}
+		french = stopWordList
 	case "fi":
-		finnish = make(map[string]string)
-		for _, word := range words {
-				finnish[word] = ""
-		}
+		finnish = stopWordList
 	case "hu":
-		hungarian = make(map[string]string)
-		for _, word := range words {
-				hungarian[word] = ""
-		}
+		hungarian = stopWordList
 	case "id":
-		indonesian = make(map[string]string)
-		for _, word := range words {
-				indonesian[word] = ""
-		}
+		indonesian = stopWordList
 	case "it":
-		italian = make(map[string]string)
-		for _, word := range words {
-				italian[word] = ""
-		}
+		italian = stopWordList
 	case "ja":
-		japanese = make(map[string]string)
-		for _, word := range words {
-				japanese[word] = ""
-		}
+		japanese = stopWordList
 	case "km":
-		khmer = make(map[string]string)
-		for _, word := range words {
-				khmer[word] = ""
-		}
+		khmer = stopWordList
 	case "lv":
-		latvian = make(map[string]string)
-		for _, word := range words {
-				latvian[word] = ""
-		}
+		latvian = stopWordList
 	case "nl":
-		dutch = make(map[string]string)
-		for _, word := range words {
-				dutch[word] = ""
-		}
+		dutch = stopWordList
 	case "no":
-		norwegian = make(map[string]string)
-		for _, word := range words {
-				norwegian[word] = ""
-		}
+		norwegian = stopWordList
 	case "pl":
-		polish = make(map[string]string)
-		for _, word := range words {
-				polish[word] = ""
-		}
+		polish = stopWordList
 	case "pt":
-		portuguese = make(map[string]string)
-		for _, word := range words {
-				portuguese[word] = ""
-		}
+		portuguese = stopWordList
 	case "ro":
-		romanian = make(map[string]string)
-		for _, word := range words {
-				romanian[word] = ""
-		}
+		romanian = stopWordList
 	case "ru":
-		russian = make(map[string]string)
-		for _, word := range words {
-				russian[word] = ""
-		}
+		russian = stopWordList
 	case "sk":
-		slovak = make(map[string]string)
-		for _, word := range words {
-				slovak[word] = ""
-		}
+		slovak = stopWordList
 	case "sv":
-		swedish = make(map[string]string)
-		for _, word := range words {
-				swedish[word] = ""
-		}
+		swedish = stopWordList
 	case "th":
-		thai = make(map[string]string)
-		for _, word := range words {
-				thai[word] = ""
-		}
+		thai = stopWordList
 	case "tr":
-		turkish = make(map[string]string)
-		for _, word := range words {
-				turkish[word] = ""
-		}
+		turkish = stopWordList
 	}
 }
