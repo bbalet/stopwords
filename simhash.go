@@ -95,6 +95,8 @@ func Simhash(content []byte, langCode string, cleanHTML bool) uint64 {
 		hash = removeStopWordsAndHash(content, thai)
 	case "tr":
 		hash = removeStopWordsAndHash(content, turkish)
+	case "vi":
+		hash = removeStopWordsAndHash(content, vietnamese)
 	}
 
 	return hash

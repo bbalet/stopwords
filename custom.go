@@ -19,7 +19,7 @@ import (
 func LoadStopWordsFromFile(filePath string, langCode string, sep string) {
 	b, err := ioutil.ReadFile(filePath)
 	if err != nil {
-			panic(err)
+		panic(err)
 	}
 	LoadStopWordsFromString(string(b), langCode, sep)
 }
@@ -41,137 +41,142 @@ func LoadStopWordsFromString(wordsList string, langCode string, sep string) {
 	case "ar":
 		arabic = make(map[string]string)
 		for _, word := range words {
-				arabic[word] = ""
+			arabic[word] = ""
 		}
 	case "bg":
 		bulgarian = make(map[string]string)
 		for _, word := range words {
-				bulgarian[word] = ""
+			bulgarian[word] = ""
 		}
 	case "cs":
 		czech = make(map[string]string)
 		for _, word := range words {
-				czech[word] = ""
+			czech[word] = ""
 		}
 	case "da":
 		danish = make(map[string]string)
 		for _, word := range words {
-				danish[word] = ""
+			danish[word] = ""
 		}
 	case "de":
 		german = make(map[string]string)
 		for _, word := range words {
-				german[word] = ""
+			german[word] = ""
 		}
 	case "el":
 		greek = make(map[string]string)
 		for _, word := range words {
-				greek[word] = ""
+			greek[word] = ""
 		}
 	case "en":
 		english = make(map[string]string)
 		for _, word := range words {
-				english[word] = ""
+			english[word] = ""
 		}
 	case "es":
 		spanish = make(map[string]string)
 		for _, word := range words {
-				spanish[word] = ""
+			spanish[word] = ""
 		}
 	case "fa":
 		persian = make(map[string]string)
 		for _, word := range words {
-				persian[word] = ""
+			persian[word] = ""
 		}
 	case "fr":
 		french = make(map[string]string)
 		for _, word := range words {
-				french[word] = ""
+			french[word] = ""
 		}
 	case "fi":
 		finnish = make(map[string]string)
 		for _, word := range words {
-				finnish[word] = ""
+			finnish[word] = ""
 		}
 	case "hu":
 		hungarian = make(map[string]string)
 		for _, word := range words {
-				hungarian[word] = ""
+			hungarian[word] = ""
 		}
 	case "id":
 		indonesian = make(map[string]string)
 		for _, word := range words {
-				indonesian[word] = ""
+			indonesian[word] = ""
 		}
 	case "it":
 		italian = make(map[string]string)
 		for _, word := range words {
-				italian[word] = ""
+			italian[word] = ""
 		}
 	case "ja":
 		japanese = make(map[string]string)
 		for _, word := range words {
-				japanese[word] = ""
+			japanese[word] = ""
 		}
 	case "km":
 		khmer = make(map[string]string)
 		for _, word := range words {
-				khmer[word] = ""
+			khmer[word] = ""
 		}
 	case "lv":
 		latvian = make(map[string]string)
 		for _, word := range words {
-				latvian[word] = ""
+			latvian[word] = ""
 		}
 	case "nl":
 		dutch = make(map[string]string)
 		for _, word := range words {
-				dutch[word] = ""
+			dutch[word] = ""
 		}
 	case "no":
 		norwegian = make(map[string]string)
 		for _, word := range words {
-				norwegian[word] = ""
+			norwegian[word] = ""
 		}
 	case "pl":
 		polish = make(map[string]string)
 		for _, word := range words {
-				polish[word] = ""
+			polish[word] = ""
 		}
 	case "pt":
 		portuguese = make(map[string]string)
 		for _, word := range words {
-				portuguese[word] = ""
+			portuguese[word] = ""
 		}
 	case "ro":
 		romanian = make(map[string]string)
 		for _, word := range words {
-				romanian[word] = ""
+			romanian[word] = ""
 		}
 	case "ru":
 		russian = make(map[string]string)
 		for _, word := range words {
-				russian[word] = ""
+			russian[word] = ""
 		}
 	case "sk":
 		slovak = make(map[string]string)
 		for _, word := range words {
-				slovak[word] = ""
+			slovak[word] = ""
 		}
 	case "sv":
 		swedish = make(map[string]string)
 		for _, word := range words {
-				swedish[word] = ""
+			swedish[word] = ""
 		}
 	case "th":
 		thai = make(map[string]string)
 		for _, word := range words {
-				thai[word] = ""
+			thai[word] = ""
 		}
 	case "tr":
 		turkish = make(map[string]string)
 		for _, word := range words {
-				turkish[word] = ""
+			turkish[word] = ""
+		}
+	case "vi":
+		vietnamese = make(map[string]string)
+		for _, word := range words {
+			vietnamese[word] = ""
 		}
 	}
 }
