@@ -8,7 +8,8 @@
 //
 // arabic, bulgarian, czech, danish, english, finnish, french, german,
 // hungarian, italian, japanese, latvian, norwegian, persian, polish,
-// portuguese, romanian, russian, slovak, spanish, swedish, turkish
+// portuguese, romanian, russian, slovak, spanish, swedish, turkish,
+// vietnamese
 
 // Package stopwords contains various algorithms of text comparison (Simhash, Levenshtein)
 package stopwords
