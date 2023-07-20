@@ -23,8 +23,8 @@ import (
 )
 
 var (
-	remTags      = regexp.MustCompile(`<[^>]*>`)
-	oneSpace     = regexp.MustCompile(`\s{2,}`)
+	remTags       = regexp.MustCompile(`<[^>]*>`)
+	oneSpace      = regexp.MustCompile(`\s{2,}`)
 	wordSegmenter = regexp.MustCompile(`[\pL\p{Mc}\p{Mn}-_']+`)
 )
 
@@ -118,6 +118,8 @@ func Clean(content []byte, langCode string, cleanHTML bool) []byte {
 		content = removeStopWords(content, thai)
 	case "tr":
 		content = removeStopWords(content, turkish)
+	case "vi":
+		content = removeStopWords(content, vietnamese)
 	}
 
 	//Remove duplicated space characters
